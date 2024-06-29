@@ -26,3 +26,7 @@ body {
 main {
     flex-grow: 1;
 }
+
+.bottom-bg {
+    background: linear-gradient(0deg, rgba(17,24,39,1) 5%, rgba(17,24,39,0) 100%);
+}

@@ -9,14 +9,14 @@ export default function NavbarSection() {
   console.log(path) ;
 
   return (
-    <nav className="bg-gray-900 font-montserrat fixed w-full z-20 top-0 start-0 border-b border-gray-600">
+    <nav className="bg-gray-900 font-montserrat sticky w-full z-20 top-0 mb-10 border-b border-gray-600">
       <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-2">
       <Link to={"/"} className="flex items-center space-x-3">
         <span className='font-bold text-[3rem] leading-none text-white'>C</span>
       </Link>
       <div className="flex md:order-2 space-x-3 md:space-x-0">
-          <button type="button" className="text-white focus:ring-4 focus:outline-none font-medium rounded-lg text-sm px-4 py-2 text-center bg-blue-600 hover:bg-blue-700 focus:ring-blue-800">Get started</button>
-          <button onClick={() => setNavbar(!navbar)} data-collapse-toggle="navbar-sticky" type="button" className="inline-flex items-center p-2 w-10 h-10 justify-center text-sm rounded-lg md:hidden focus:outline-none focus:ring-2 text-gray-400 hover:bg-gray-700 focus:ring-gray-600" aria-controls="navbar-sticky" aria-expanded="false">
+          <button type="button" className="text-white font-medium rounded-lg text-sm px-4 py-2 text-center bg-blue-600 hover:bg-blue-700">Get started</button>
+          <button onClick={() => setNavbar(!navbar)} data-collapse-toggle="navbar-sticky" type="button" className="inline-flex items-center p-2 w-10 h-10 justify-center text-sm rounded-lg md:hidden text-gray-400 hover:bg-gray-700" aria-controls="navbar-sticky" aria-expanded="false">
             <svg className="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14">
                 <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M1 1h15M1 7h15M1 13h15"/>
             </svg>

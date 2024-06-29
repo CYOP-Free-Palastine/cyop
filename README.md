@@ -49,7 +49,7 @@ Write about yourself, practice, projects, technologies, etc then press `generate
 
 ### Payments
 **
-You can only add three project without any subscribe.
+You can only add three project without any subscribe. <br />
 We have three subscribes.
 The first one is free and, you can add three project, use only simple templates (not premium!!!, not for paid!!!), add 1 company you have worked, with this subscribe.
 The second one is 5$ and you can add 6 projects, use simple and premium templates (not for paid!!!), add 3 company you have worked, with this subscribe.

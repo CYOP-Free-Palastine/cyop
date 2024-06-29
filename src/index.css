@@ -15,4 +15,14 @@ body {
     padding-right: 50px;
     margin-left: auto;
     margin-right: auto;
-  }
+}
+
+#root {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+main {
+    flex-grow: 1;
+}

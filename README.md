@@ -2,7 +2,7 @@
 
 **CYOP - CREATE YOUR OWN PORTFOLIO**
 
-**Technologies:**
+## Technologies:
 
 > React <br />
 > vite <br />

@@ -19,4 +19,12 @@ export const navbarLinks = [
         label: "Support",
         path: '/support'
     },
+    {
+        label: "Register",
+        path: '/register'
+    },
+    {
+        label: "Login",
+        path: '/login'
+    },
 ]

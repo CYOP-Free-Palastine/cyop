@@ -4,6 +4,7 @@ import Login from "@pages/login";
 import Profile from "@pages/profile";
 import Register from "@pages/register";
 import Subscribes from "@pages/subscribes";
+import Templates from "@pages/templates";
 
 export const routes = [
     {
@@ -29,5 +30,9 @@ export const routes = [
     {
         path: '/about',
         element: <About />
+    },
+    {
+        path: '/templates',
+        element: <Templates />
     },
 ]

@@ -1,10 +1,7 @@
 import React, { useState } from 'react';
 import google from '@assets/icons/google.png';
 import { Link } from 'react-router-dom';
-import { createUserWithEmailAndPassword, sendEmailVerification } from 'firebase/auth';
-import { auth, db } from '@api/firebase';
-import { setDoc, doc } from 'firebase/firestore';
-import { toast } from 'react-toastify';
+import { handleRegister } from '@hooks/useRegister/useRegister';
 
 export default function Left() {
     const [isLoading, setIsLoading] = useState(false);
@@ -23,43 +20,6 @@ export default function Left() {
         }));
     };
 
-    const handleRegister = async (e) => {
-        e.preventDefault();
-        setIsLoading(true);
-    
-        if (registerData.password !== registerData.confirm_password) {
-            toast.warning("Passwords do not match", {
-                position: "top-right"
-            });
-            setIsLoading(false);
-            return;
-        }
-    
-        try {
-            const userCredential = await createUserWithEmailAndPassword(auth, registerData.email, registerData.password);
-            const user = userCredential.user;
-            
-            if (user) {
-                await setDoc(doc(db, "Users", user.uid), {
-                    user_name: registerData.user_name,
-                    email: user.email,
-                });
-
-                await sendEmailVerification(user);
-                toast.success("User registered successfully! Please check your email to verify your account.", {
-                    position: "top-right"
-                });
-                setIsLoading(false);
-            }
-        } catch (error) {
-            console.log(error.message);
-            toast.error(error.message, {
-                position: "top-right"
-            });
-            setIsLoading(false);
-        }
-    };
-
     return (
         <div className='p-6 bg-card_bg rounded-xl md:min-w-[500px]'>
             <h2 className='font-bold text-[1.8rem] mb-5'>Register</h2>
@@ -74,7 +34,7 @@ export default function Left() {
                 <p>or</p>
                 <span className='w-[50%] h-[2px] bg-secondary_card_color/50'></span>
             </div>
-            <form onSubmit={handleRegister} className="space-y-4 md:space-y-6" action="#">
+            <form onSubmit={(e) => handleRegister(e, setIsLoading, registerData)} className="space-y-4 md:space-y-6" action="#">
                 <div>
                     <label htmlFor="user_name" className="block mb-2 text-sm font-medium text-white">User name</label>
                     <input 

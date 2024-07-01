@@ -1,9 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import google from '@assets/icons/google.png'
 import { Link } from 'react-router-dom'
-import { toast } from 'react-toastify';
-import { signInWithEmailAndPassword } from 'firebase/auth';
-import { auth } from '@api/firebase';
+import { handleLogin } from '@hooks/useLogin/useLogin';
 
 export default function Left() {
   const [ isLoading, setIsLoading ] = useState(false);
@@ -13,34 +11,12 @@ export default function Left() {
     rememberMe: false,
   });
 
-  useEffect(() => {
-    console.log(loginData);
-  }, [loginData]);
-
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
     setLoginData(prevState => ({
       ...prevState,
       [name]: type === 'checkbox' ? checked : value,
     }));
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setIsLoading(true)
-
-    try {
-      await signInWithEmailAndPassword(auth, loginData.email, loginData.password)
-      toast.success("User logged in successfully", {
-        position: "top-right"
-      })
-      setIsLoading(false)
-    } catch (error) {
-      toast.error(error.message, {
-        position: "top-right"
-      })
-      setIsLoading(false)
-    }
   };
 
   return (
@@ -57,7 +33,7 @@ export default function Left() {
         <p>or</p>
         <span className='w-[50%] h-[2px] bg-secondary_card_color/50'></span>
       </div>
-      <form onSubmit={handleSubmit} className="space-y-4 md:space-y-6" action="#">
+      <form onSubmit={(e) => handleLogin(e, setIsLoading, loginData)} className="space-y-4 md:space-y-6" action="#">
         <div>
           <label htmlFor="email" className="block mb-2 text-sm font-medium text-white">Your email</label>
           <input 

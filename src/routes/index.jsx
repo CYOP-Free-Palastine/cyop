@@ -2,6 +2,7 @@ import Home from "@pages/home-page";
 import Login from "@pages/login";
 import Profile from "@pages/profile";
 import Register from "@pages/register";
+import Subscribes from "@pages/subscribes";
 
 export const routes = [
     {
@@ -19,5 +20,9 @@ export const routes = [
     {
         path: '/profile',
         element: <Profile />
+    },
+    {
+        path: '/subscribes',
+        element: <Subscribes />
     },
 ]

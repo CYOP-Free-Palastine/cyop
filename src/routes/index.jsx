@@ -45,4 +45,8 @@ export const routes = [
         path: '/templates/retro',
         element: <Retro />
     },
+    {
+        path: '/templates/retro/:portfolioId',
+        element: <Retro />
+    },
 ]

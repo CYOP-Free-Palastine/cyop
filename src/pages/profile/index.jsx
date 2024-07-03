@@ -1,21 +1,33 @@
 import { db } from '@api/firebase';
 import ProfileSection from '@components/profile-section';
 import { getMethod } from '@hooks/endpoints/get-method';
-import { doc } from 'firebase/firestore'; // Make sure to import doc and getDoc correctly
-import React, { useEffect, useState } from 'react';
+import { collection, doc, getDocs, query, where } from 'firebase/firestore'; // Make sure to import doc and getDoc correctly
+import React from 'react';
 import { useQuery } from 'react-query';
 
-export default function Profile() {
-    const userId = window.localStorage.getItem("userId");
-    const docRef = doc(db, "Users", userId); // Create a DocumentReference correctly
+async function getPortfolios(userId) {
+    const q = query(collection(db, "portfolios"), where("userId", "==", userId));
+    const querySnapshot = await getDocs(q);
+    const portfolios = [];
+    querySnapshot.forEach((doc) => {
+        portfolios.push({ id: doc.id, ...doc.data() });
+    });
+    console.log(portfolios);
+    return portfolios;
+}
 
+export default function Profile() {
+    const userId = window.localStorage.getItem("userId")
+    const docRef = doc(db, "Users", userId); // Create a DocumentReference correctly
     const { data: user, error } = useQuery("user", () => getMethod(docRef) , { keepPreviousData: true, refetchOnWindowFocus: false }) // Declare useState outside useEffect
+
+    const { data: portfolios, error: portfolioError } = useQuery("portfolios", () => getPortfolios(userId), { keepPreviousData: true, refetchOnWindowFocus: false });
 
     if (!window.localStorage.getItem("userId")) {
         window.location.href = "/login";
     }
 
-    if (error) {
+    if (error || portfolioError) {
         return (
             <div className="flex items-center justify-center h-screen">
                 <p className="text-red-500 text-3xl">An error occurred.</p>
@@ -25,9 +37,9 @@ export default function Profile() {
 
     return (
         <section className='container'>
-            {!user ? (
+            {!user || !portfolios ? (
                 <>
-                    <div className='absolute w-full h-full bg-black/40 backdrop-blur-sm  top-0 left-0 z-50'></div>
+                    <div className='absolute w-full h-full bg-black/40 backdrop-blur-sm top-0 left-0 z-50'></div>
                     <div className="absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] z-50">
                         <svg aria-hidden="true" role="status" className="inline w-16 h-16 me-3 animate-spin text-gray-600" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z" fill="currentColor"/>
@@ -36,7 +48,7 @@ export default function Profile() {
                     </div>
                 </>
             ) : (
-                <ProfileSection portfolios={[]} user={user}  /> // Assuming you want to display the user data in a ProfileSection component
+                <ProfileSection portfolios={portfolios} user={user} /> // Assuming you want to display the user data in a ProfileSection component
             )}
         </section>
     );

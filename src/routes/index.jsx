@@ -5,6 +5,8 @@ import Profile from "@pages/profile";
 import Register from "@pages/register";
 import Subscribes from "@pages/subscribes";
 import Templates from "@pages/templates";
+import Brutalist from "cyop-portfolios/brutalist";
+import Retro from "cyop-portfolios/retro";
 
 export const routes = [
     {
@@ -34,5 +36,13 @@ export const routes = [
     {
         path: '/templates',
         element: <Templates />
+    },
+    {
+        path: '/templates/brutalist',
+        element: <Brutalist />
+    },
+    {
+        path: '/templates/retro',
+        element: <Retro />
     },
 ]

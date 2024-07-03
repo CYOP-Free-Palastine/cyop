@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-export default function TemplateCard({img, price, link}) {
+export default function TemplateCard({img, price, link, title}) {
     return (
         <div class="w-full flex flex-col  max-w-xs border rounded-lg shadow bg-gray-800 border-gray-700">
             <Link to={link}>
@@ -9,7 +9,7 @@ export default function TemplateCard({img, price, link}) {
             </Link>
             <div class="px-5 pb-0">
                 <Link to={link}>
-                    <h5 class="text-xl font-semibold tracking-tight text-white">Cosmo Portfolio</h5>
+                    <h5 class="text-xl font-semibold tracking-tight text-white">{title}</h5>
                 </Link>
                 <div class="flex items-center mt-2.5 mb-5">
                     <div class="flex items-center space-x-1 rtl:space-x-reverse">

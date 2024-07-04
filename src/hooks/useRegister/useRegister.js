@@ -32,7 +32,6 @@ export const handleRegister = async (e, setIsLoading, registerData) => {
             setIsLoading(false);
         }
     } catch (error) {
-        console.log(error.message);
         toast.error(error.message, {
             position: "top-right"
         });

@@ -87,7 +87,6 @@ export default function Retro() {
               portfolioName: "retro"
           });
 
-          console.log('Document written with ID: ', docRef.id);
           toast.success('Portfolio created successfully!', {
               position: "top-right"
           });
@@ -129,28 +128,13 @@ export default function Retro() {
                     <img className='w-full h-full object-cover rounded-[50%] scale-75' src={homeImg} alt="Home" />
                   </div>
                 </div>
-  
-                <input
-                  className='font-medium text-gray-600 text-lg md:text-2xl uppercase mb-8 bg-[transparent] text-center border-none outline-none'
-                  type="text"
-                  defaultValue={portfolio.portfolioData.name}
-                  disabled
-                />
-  
-                <input
-                  type="text"
-                  className='font-normal text-gray-900 text-4xl md:text-7xl leading-none mb-8 bg-[transparent] border-none outline-none text-center w-full'
-                  defaultValue={portfolio.portfolioData.position}
-                  disabled
-                />
-  
-                <textarea
-                  rows={3}
-                  maxLength={100}
-                  className='font-normal text-gray-600 resize-none text-md md:text-xl sm:mb-0 mb-4 bg-[transparent] border-none outline-none w-full text-center'
-                  defaultValue={portfolio.portfolioData.about}
-                  disabled
-                ></textarea>
+
+                <h1 className='font-medium text-gray-600 text-lg md:text-2xl uppercase mb-8 text-center'>{portfolio.portfolioData.name}</h1>
+
+                <h1 className='font-normal text-gray-900 text-4xl md:text-7xl leading-none mb-8 text-center'>{portfolio.portfolioData.position}</h1>
+
+                <p className='font-normal text-gray-600 resize-none text-md md:text-xl sm:mb-0 mb-4 text-center'>{portfolio.portfolioData.about}</p>
+
               </div>
             </div>
           </section>

@@ -3,8 +3,6 @@ import { Link } from 'react-router-dom'
 import img from '@assets/portfolios/tfpw.png'
 
 export default function ProfileSection({user, portfolios}) {
-
-    console.log(portfolios);
   return (
     <div>
         <div className='mb-8'>

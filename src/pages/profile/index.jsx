@@ -12,7 +12,6 @@ async function getPortfolios(userId) {
     querySnapshot.forEach((doc) => {
         portfolios.push({ id: doc.id, ...doc.data() });
     });
-    console.log(portfolios);
     return portfolios;
 }
 
